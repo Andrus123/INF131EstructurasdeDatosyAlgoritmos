@@ -45,12 +45,51 @@ public class StackMiercoles {
 		while(!z.empty())
 		{
 			Cultivo cv=z.pop();
+			x.push(cv);
+			if(cv.getProduccion()>may)
+				may=cv.getProduccion();
+		}
+		while(!x.empty())
+		{
+			Cultivo v=x.pop();
+			z.push(v);
+			if(v.getProduccion()==may)
+				v.mostrar();
 		}
 	}
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		Stack<Cultivo> C=new Stack<Cultivo>();
+		llenar(C,Leer.datoInt());
+		mostrar(C);
+		//mostrar los cultivos con mayor produccion
+		mayor(C);
+		
+		PilaC A=new PilaC();
+		A.llenar(Leer.datoInt());
+		A.mostrar();
+		mayor(A);
+		//1. Verificar si existe el cultivo "tomate"
+		//2. Mostrar los nombres cultivos del Stack que existen en la PilaC
+	}
+	public static void mayor(PilaC z)
+	{
+		PilaC x=new PilaC();
+		int may=0;
+		while(!z.esvacia())
+		{
+			Cultivo cv=z.eliminar();
+			x.adicionar(cv);
+			if(cv.getProduccion()>may)
+				may=cv.getProduccion();
+		}
+		while(!x.esvacia())
+		{
+			Cultivo v=x.eliminar();
+			z.adicionar(v);
+			if(v.getProduccion()==may)
+				v.mostrar();
+		}
 	}
 
 }
