@@ -42,6 +42,7 @@ public class PilaClientes {
 		adicionar(new Cliente("Carla",1122,22));
 		adicionar(new Cliente("Lore",3344,21));
 		adicionar(new Cliente("Juan",5566,22));
+		adicionar(new Cliente("Mauren",7788,22));
 	}
 	void mostrar() {
 		PilaClientes aux=new PilaClientes();

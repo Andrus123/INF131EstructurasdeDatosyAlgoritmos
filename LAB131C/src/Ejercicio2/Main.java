@@ -17,15 +17,32 @@ public class Main {
 		SolucionA(pc,pv);
 		//b. Mostrar el monto total vendido a cada cliente
 		SolucionB(pc,pv,pz);
+		//c. Mostrar aquellos clientes que realizaron alguna compra en la fecha X
+		SolucionC("3/9/2021",pc,pv);
 	}
 	private static void SolucionA(PilaClientes pc, PilaVentas pv) {
+		int mayor = MayorCantidadZapatos(pc,pv);
 		PilaClientes auxpc=new PilaClientes();
 		while(!pc.esvacia()) {
 			Cliente x=pc.eliminar();
-			System.out.println("Cliente: "+x.getNombre()+" cantidad: "+ContarCalzadosCliente(x.getCi(),pv));
+			if(ContarCalzadosCliente(x.getCi(),pv)==mayor)
+				System.out.println("Cliente con mayor compra: "
+			+x.getNombre()+ " - "+mayor+" zapatos");
 			auxpc.adicionar(x);
 		}
 		pc.vaciar(auxpc);
+	}
+	private static int MayorCantidadZapatos(PilaClientes pc, PilaVentas pv) {
+		int mayor = 0;
+		PilaClientes auxpc=new PilaClientes();
+		while(!pc.esvacia()) {
+			Cliente x=pc.eliminar();
+			if(ContarCalzadosCliente(x.getCi(),pv)>mayor)
+				mayor=ContarCalzadosCliente(x.getCi(),pv);
+			auxpc.adicionar(x);
+		}
+		pc.vaciar(auxpc);
+		return mayor;
 	}
 	private static int ContarCalzadosCliente(int ci, PilaVentas pv) {
 		int cant = 0;
@@ -71,5 +88,28 @@ public class Main {
 		}
 		pz.vaciar(auxpz);
 		return total;
+	}
+	private static void SolucionC(String fecha,PilaClientes pc, PilaVentas pv) {
+		// TODO Auto-generated method stub
+		System.out.println("Clientes en fecha : "+fecha);
+		PilaVentas auxpv=new PilaVentas();
+		while(!pv.esvacia()) {
+			Venta v=pv.eliminar();
+			if(v.getFecha().equals(fecha))
+				ClientesenFecha(v.getCi(),pc);
+				auxpv.adicionar(v);
+		}
+		pv.vaciar(auxpv);
+	}
+	private static void ClientesenFecha(int ci, PilaClientes pc) {
+		// TODO Auto-generated method stub
+		PilaClientes auxpc=new PilaClientes();
+		while(!pc.esvacia()) {
+			Cliente c=pc.eliminar();
+			if(c.getCi()==ci)
+				c.mostrar();
+				auxpc.adicionar(c);
+		}
+		pc.vaciar(auxpc);
 	}
 }

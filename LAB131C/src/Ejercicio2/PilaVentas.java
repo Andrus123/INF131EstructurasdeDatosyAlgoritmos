@@ -42,6 +42,7 @@ public class PilaVentas {
 		adicionar(new Venta("700T","31/8/2021",1122,1));
 		adicionar(new Venta("500T","1/9/2021",5566,2));
 		adicionar(new Venta("720","3/9/2021",3344,3));
+		adicionar(new Venta("720","3/9/2021",7788,2));
 	}
 	void mostrar() {
 		PilaVentas aux=new PilaVentas();
