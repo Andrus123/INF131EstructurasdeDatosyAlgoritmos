@@ -14,10 +14,13 @@ public class Main {
 		pz.llenar();
 		pz.mostrar();
 		//a. Mostrar a los clientes que compraron más productos
+		System.out.println("A)");
 		SolucionA(pc,pv);
 		//b. Mostrar el monto total vendido a cada cliente
+		System.out.println("B)");
 		SolucionB(pc,pv,pz);
 		//c. Mostrar aquellos clientes que realizaron alguna compra en la fecha X
+		System.out.println("C)");
 		SolucionC("3/9/2021",pc,pv);
 	}
 	private static void SolucionA(PilaClientes pc, PilaVentas pv) {
