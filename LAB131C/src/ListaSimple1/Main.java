@@ -29,9 +29,16 @@ public class Main {
 		B.adifinal(m7);
 		B.mostrar();
 		//mostrar a cada dueño con sus mascotas
+		System.out.println("\nSOLUCION 1");
 		sol1(A,B);
+		//agregar una mascota a cada dueño
+		System.out.println("\nSOLUCION 2");
+		sol2(A,B);
+		sol1(A,B);
+		// Mostrar al dueño X con sus mascotas
+		System.out.println("\nMOSTRAR A DUEÑO X CON SUS MASCOTAS");
+		sol3(A,B,"JUAN");
 	}
-
 	private static void sol1(LSimpleD a, LSimpleM b) {
 		// TODO Auto-generated method stub
 		NodoD r1=a.getP();
@@ -43,6 +50,45 @@ public class Main {
 			{
 				r2.getM().mostrar();
 				r2=r2.getSig();
+			}
+			r1=r1.getSig();
+		}
+	}
+	private static void sol2(LSimpleD a, LSimpleM b) {
+		// TODO Auto-generated method stub
+		NodoD r1=a.getP();
+		NodoM r2=b.getP();
+		while(r1!=null)
+		{
+			r1.setNroMascotas(r1.getNroMascotas()+1);
+			NodoM nue=new NodoM();
+			Mascota mx=new Mascota("xxx","yyy",0);
+			nue.setM(mx);
+			NodoM w=r2.getSig();
+			r2.setSig(nue);
+			nue.setSig(w);
+			
+			for(int i=1; i<=r1.getNroMascotas();i++)
+			{
+				r2=r2.getSig();
+			}
+			r1=r1.getSig();
+		}
+	}
+
+	private static void sol3(LSimpleD a, LSimpleM b, String dueño) {
+		// TODO Auto-generated method stub
+		NodoD r1=a.getP();
+		NodoM r2=b.getP();
+		while(r1!=null)
+		{
+			if(r1.getNom().equals(dueño)) {
+			System.out.println("\nDUEÑO:  ["+r1.getNom()+" "+r1.getNroMascotas()+"]");
+			for(int i=1; i<=r1.getNroMascotas();i++)
+			{
+				r2.getM().mostrar();
+				r2=r2.getSig();
+			}
 			}
 			r1=r1.getSig();
 		}
